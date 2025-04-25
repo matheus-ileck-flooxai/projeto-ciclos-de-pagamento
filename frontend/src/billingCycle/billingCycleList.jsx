@@ -5,13 +5,26 @@ import { getList } from './billingCycleActions'
 
 class BillingCycleList extends Component {
 
-    componentWillMount(){
+    componentWillMount() {
         this.props.getList()
-        
+
+    }
+
+    renderRows() {
+        const list = this.props.list || []
+        return list.map(bc => (
+
+            <tr key={bc._id}>
+                <td>{bc.name}</td>
+                <td>{bc.month}</td>
+                <td>{bc.year}</td>
+
+            </tr>
+            
+        ))
     }
 
     render() {
-        console.log(this.props.list);
 
         return (
             <div>
@@ -24,7 +37,7 @@ class BillingCycleList extends Component {
                         </tr>
                     </thead>
                     <tbody>
-
+                        {this.renderRows()}
                     </tbody>
                 </table>
             </div>
@@ -32,7 +45,7 @@ class BillingCycleList extends Component {
     }
 }
 
-const mapStateToProps = state => ({list: state.billingCycle.list})
-const mapDispatchToProps = dispatch => bindActionCreators({getList}, dispatch)
+const mapStateToProps = state => ({ list: state.billingCycle.list })
+const mapDispatchToProps = dispatch => bindActionCreators({ getList }, dispatch)
 
-export default connect(mapStateToProps,mapDispatchToProps)(BillingCycleList)
+export default connect(mapStateToProps, mapDispatchToProps)(BillingCycleList)
