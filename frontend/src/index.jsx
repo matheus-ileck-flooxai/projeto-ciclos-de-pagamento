@@ -14,6 +14,6 @@ const devTools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_
 const store = applyMiddleware(promise,multi,thunk)(createStore)(reducers, devTools)
 ReactDom.render(
     <Provider store={store}>
-        <App />
+        <App  class="wrapper"/>
     </Provider>,
     document.getElementById('app'))
